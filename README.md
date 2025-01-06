@@ -20,15 +20,9 @@
 
 Install the package via npm or yarn:
 
-Copy code
-
 `npm install tic-tac-bot` 
 
 or
-
-csharp
-
-Copy code
 
 `yarn add tic-tac-bot` 
 
