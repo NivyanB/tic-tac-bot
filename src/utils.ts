@@ -30,8 +30,6 @@ export function checkWinner(board: Board): string | null {
 export function getRandomMove(board: Board): Move {
   const availableMoves: Move[] = [];
 
-  console.log("Finding available moves...");
-
   // Iterate over the board to find empty cells
   for (let row = 0; row < 3; row++) {
     for (let col = 0; col < 3; col++) {
@@ -42,19 +40,13 @@ export function getRandomMove(board: Board): Move {
   }
 
   // Log the available moves
-  console.log("Available moves:", availableMoves);
 
   if (availableMoves.length === 0) {
-    console.log("No available moves left.");
-    return { row: -1, col: -1 }; // Return an invalid move if no moves are available
   }
 
   // Select a random move
   const randomMove =
     availableMoves[Math.floor(Math.random() * availableMoves.length)];
-  console.log(
-    `Selected random move at row: ${randomMove.row}, col: ${randomMove.col}`
-  );
 
   return randomMove;
 }

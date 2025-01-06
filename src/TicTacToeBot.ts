@@ -16,23 +16,17 @@ function findWinningMove(board: Board, player: Cell): Move | null {
     for (let col = 0; col < 3; col++) {
       // If the current cell is empty (null), simulate the player's move
       if (board[row][col] === null) {
-        console.log(`Simulating move at row: ${row}, col: ${col}`);
-
         // Simulate the move by placing the player's marker on the empty cell
         board[row][col] = player;
 
         // Check if this move results in a win for the player
         const winner = checkWinner(board);
-        console.log(
-          `After placing ${player} at (${row}, ${col}), winner: ${winner}`
-        );
 
         // Undo the move (set the cell back to null) for further evaluation
         board[row][col] = null;
 
         // If this simulated move results in a win, return the current position as the winning move
         if (winner === player) {
-          console.log(`Winning move found at (${row}, ${col})`);
           return { row, col };
         }
       }
@@ -40,7 +34,6 @@ function findWinningMove(board: Board, player: Cell): Move | null {
   }
 
   // If no winning move is found, log that no winning move was found and return null
-  console.log("No winning move found.");
   return null;
 }
 
@@ -57,32 +50,20 @@ function findWinningMove(board: Board, player: Cell): Move | null {
 function getMediumMove(board: Board, player: Cell): Move {
   const opponent: Cell = player === "X" ? "O" : "X";
 
-  console.log(`Player: ${player}, Opponent: ${opponent}`);
-
   // Check if the player can win
-  console.log("Checking if player can win...");
   const winningMove = findWinningMove(board, player);
   if (winningMove) {
-    console.log(
-      `Player can win with move at row: ${winningMove.row}, col: ${winningMove.col}`
-    );
     return winningMove;
   }
 
   // Check if the opponent can win and block it
-  console.log("Checking if opponent can win and block...");
   const blockMove = findWinningMove(board, opponent);
   if (blockMove) {
-    console.log(
-      `Blocking opponent's winning move at row: ${blockMove.row}, col: ${blockMove.col}`
-    );
     return blockMove;
   }
 
   // No winning or blocking move, so pick a random move
-  console.log("No winning or blocking move found. Selecting a random move...");
   const randomMove = getRandomMove(board);
-  console.log("Random Move: . ", randomMove);
 
   return randomMove;
 }
